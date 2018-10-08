@@ -16,12 +16,16 @@ if (command === 'spotify-this-song') {
   spotify.search({ type: 'track', query: thingToGet }, function (err, data) {
     if (err) {
       return console.log('Error occurred: ' + err);
+    } else if (data.tracks.items[0] != undefined) {
+      // console loge out the results from the first item in the array
+      console.log(`Artist: ${data.tracks.items[0].artists[0].name}`);
+      console.log(`Title: ${data.tracks.items[0].name}`);
+      console.log(`Album: ${data.tracks.items[0].album.name}`);
+      console.log(`Preview: ${data.tracks.items[0].preview_url}`);
+    } else {
+      console.log(`Track: ${thingToGet} not found`)
+
     }
-    // console loge out the results from the first item in the array
-    console.log(`Artist: ${data.tracks.items[0].artists[0].name}`);
-    console.log(`Title: ${data.tracks.items[0].name}`);
-    console.log(`Album: ${data.tracks.items[0].album.name}`);
-    console.log(`Preview: ${data.tracks.items[0].preview_url}`);
   });
 }
 
