@@ -5,7 +5,7 @@ exports.spotify = {
   secret: process.env.SPOTIFY_SECRET
 };
 
-exports.someOtherKey = {
-  id: process.env.SECOND_ID,
-  secret: process.env.SECOND_SECRET
+exports.omdb = {
+  //id: process.env.SECOND_ID,
+  secret: process.env.OMDB_SECRET
 };
