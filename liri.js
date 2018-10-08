@@ -23,7 +23,7 @@ if (command === 'spotify-this-song') {
       console.log(`Album: ${data.tracks.items[0].album.name}`);
       console.log(`Preview: ${data.tracks.items[0].preview_url}`);
     } else {
-      console.log(`Track: ${thingToGet} not found`)
+      console.log(`Track: '${thingToGet}' not found`)
 
     }
   });
