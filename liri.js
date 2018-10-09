@@ -29,17 +29,25 @@ if (command === 'spotify-this-song') {
     }
   });
 }
-
+// get a movie from OMDB if the command is 'movie-this'
 if (command === 'movie-this') {
-  let url = `http://www.omdbapi.com/?apikey=${keys.omdb.secret}&i=tt3896198`;
-  request(url, function(error, response, body) {
+  let url = `http://www.omdbapi.com/?apikey=${keys.omdb.secret}&t=${thingToGet}`;
+  request(url, function (error, response, body) {
 
-  // If the request was successful...
-  if (!error && response.statusCode === 200) {
+    // If the request was successful...
+    if (!error && response.statusCode === 200) {
 
-    // Then log the body from the site!
-    console.log(JSON.parse(body));
-  }
-});
+      // Then log the body from the site!
+      let movie = JSON.parse(body);
+      console.log(`Title: ${movie.Title}`);
+      console.log(`Year: ${movie.Year}`);
+      console.log(`IMDB Rating: ${movie.imdbRating}`);
+      console.log(`Rotten Tomatoes: ${movie.Ratings[1].Value}`);
+      console.log(`Country: ${movie.Country}`);
+      console.log(`Language: ${movie.Language}`);
+      console.log(`Plot: ${movie.Plot}`);
+      console.log(`Actors: ${movie.Actors}`);
+    }
+  });
 }
 
