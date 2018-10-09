@@ -1,6 +1,7 @@
 const dotEnv = require("dotenv").config();
 const keys = require("./keys.js");
-var Spotify = require('node-spotify-api');
+const Spotify = require('node-spotify-api');
+const request = require("request");
 
 const command = process.argv[2];
 const thingToGet = process.argv[3];
@@ -27,5 +28,18 @@ if (command === 'spotify-this-song') {
 
     }
   });
+}
+
+if (command === 'movie-this') {
+  let url = `http://www.omdbapi.com/?apikey=${keys.omdb.secret}&i=tt3896198`;
+  request(url, function(error, response, body) {
+
+  // If the request was successful...
+  if (!error && response.statusCode === 200) {
+
+    // Then log the body from the site!
+    console.log(JSON.parse(body));
+  }
+});
 }
 

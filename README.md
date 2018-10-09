@@ -9,3 +9,5 @@ This repo contains the code for a bootcamp project "Liri Bot".  LIRI is like iPh
 
 ## Dependencies
 * dotenv
+* node-spotify-api
+* request
