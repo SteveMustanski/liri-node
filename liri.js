@@ -63,7 +63,13 @@ if (command === 'concert-this') {
 
       // Then log the body from the site!
       let bands = JSON.parse(body);
-      console.log(bands.length);
+      // loop through the results
+      for (let i = 0; i < bands.length; i++) {
+        console.log(`Venue: ${bands[i].venue.name}`);
+        console.log(`Location: ${bands[i].venue.city}, ${bands[i].venue.region}`);
+        console.log(`Location: ${bands[i].datetime}`);
+        console.log(`******************`);
+      }
     }
   });
 }
