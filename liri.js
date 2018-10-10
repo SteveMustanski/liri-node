@@ -5,6 +5,8 @@ const request = require("request");
 
 const command = process.argv[2];
 const thingToGet = process.argv[3];
+
+// get song data from spotify if command === spotify-this-song
 if (command === 'spotify-this-song') {
 
   // set up new spotify object for node-spotify-api
@@ -47,6 +49,21 @@ if (command === 'movie-this') {
       console.log(`Language: ${movie.Language}`);
       console.log(`Plot: ${movie.Plot}`);
       console.log(`Actors: ${movie.Actors}`);
+    }
+  });
+}
+
+// get a list of events from bands in town if the command is 'concert-this'
+if (command === 'concert-this') {
+  let url = `https://rest.bandsintown.com/artists/${thingToGet}/events?app_id=${keys.bands.id}`;
+  request(url, function (error, response, body) {
+
+    // If the request was successful...
+    if (!error && response.statusCode === 200) {
+
+      // Then log the body from the site!
+      let bands = JSON.parse(body);
+      console.log(bands.length);
     }
   });
 }

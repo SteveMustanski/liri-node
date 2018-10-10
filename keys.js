@@ -4,6 +4,9 @@ exports.spotify = {
 };
 
 exports.omdb = {
-  //id: process.env.SECOND_ID,
   secret: process.env.OMDB_SECRET
+};
+
+exports.bands = {
+  secret: process.env.BANDS_ID
 };
