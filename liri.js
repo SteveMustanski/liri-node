@@ -3,6 +3,7 @@ const keys = require('./keys.js');
 const Spotify = require('node-spotify-api');
 const request = require('request');
 const moment = require('moment');
+const fs = require('fs');
 
 //get arguments from the command line
 const command = process.argv[2];
@@ -87,6 +88,16 @@ if (command === 'concert-this') {
         console.log(`******************`);
       }
     }
+  });
+}
+
+if (command === 'do-what-it-says') {
+  fs.readFile('random.txt', 'utf8', (err, data) => {
+    if (err) {
+      return console.log(err);
+    }
+    data = data.split(',');
+    console.log(data);
   });
 }
 
