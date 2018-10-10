@@ -1,7 +1,8 @@
-const dotEnv = require("dotenv").config();
-const keys = require("./keys.js");
+const dotEnv = require('dotenv').config();
+const keys = require('./keys.js');
 const Spotify = require('node-spotify-api');
-const request = require("request");
+const request = require('request');
+const moment = require('moment');
 
 const command = process.argv[2];
 const thingToGet = process.argv[3];
@@ -63,7 +64,7 @@ if (command === 'concert-this') {
 
       // Then log the body from the site!
       let bands = JSON.parse(body);
-      // no events
+      // check for no events
       if (bands.length === 0) {
         console.log(`Sorry there are no upcomming events for ${thingToGet}`);
       }
@@ -71,10 +72,22 @@ if (command === 'concert-this') {
       for (let i = 0; i < bands.length; i++) {
         console.log(`Venue: ${bands[i].venue.name}`);
         console.log(`Location: ${bands[i].venue.city}, ${bands[i].venue.region}`);
-        console.log(`Location: ${bands[i].datetime}`);
+
+        // modify format of incomming date time
+        let justDate = bands[i].datetime.substring(0,10);
+        let printDate = convertDate(justDate);
+
+        console.log(`Date: ${printDate}`)
         console.log(`******************`);
       }
     }
   });
+}
+
+// converts the incomming date string to the requested format
+function convertDate(dateString) {
+  let momentObj = moment(dateString, 'YYYY-MM-DD');
+  let momentString = momentObj.format('MM/DD/YYYY');
+  return momentString;
 }
 
