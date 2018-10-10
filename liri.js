@@ -4,8 +4,9 @@ const Spotify = require('node-spotify-api');
 const request = require('request');
 const moment = require('moment');
 
+//get arguments from the command line
 const command = process.argv[2];
-const thingToGet = process.argv[3];
+let thingToGet = process.argv[3];
 
 // get song data from spotify if command === spotify-this-song
 if (command === 'spotify-this-song') {
@@ -34,6 +35,11 @@ if (command === 'spotify-this-song') {
 }
 // get a movie from OMDB if the command is 'movie-this'
 if (command === 'movie-this') {
+  // default to 'Mr. Nobody' if no movie is specified
+  if (!thingToGet) {
+    thingToGet = 'Mr. Nobody';
+    console.log(thingToGet);
+  }
   let url = `http://www.omdbapi.com/?apikey=${keys.omdb.secret}&t=${thingToGet}`;
   request(url, function (error, response, body) {
 
