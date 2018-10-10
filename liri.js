@@ -63,6 +63,10 @@ if (command === 'concert-this') {
 
       // Then log the body from the site!
       let bands = JSON.parse(body);
+      // no events
+      if (bands.length === 0) {
+        console.log(`Sorry there are no upcomming events for ${thingToGet}`);
+      }
       // loop through the results
       for (let i = 0; i < bands.length; i++) {
         console.log(`Venue: ${bands[i].venue.name}`);
