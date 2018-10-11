@@ -42,7 +42,7 @@ if (command === 'movie-this') {
 
 // get a list of events from bands in town if the command is 'concert-this'
 if (command === 'concert-this') {
-  concertIt(thingToGetFix);
+  concertIt(thingToGet);
 }
 
 // function to run spotify package and print out information
