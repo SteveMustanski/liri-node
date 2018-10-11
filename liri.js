@@ -6,13 +6,26 @@ const moment = require('moment');
 const fs = require('fs');
 
 //get arguments from the command line
-const command = process.argv[2];
+let command = process.argv[2];
 let thingToGet = process.argv[3];
 
+if (command === 'do-what-it-says') {
+  fs.readFile('random.txt', 'utf8', (err, data) => {
+    if (err) {
+      return console.log(err);
+    }
+    data = data.split(',');
+    command = data[0];
+    thingToGet = data[1];
+    if (command === 'spotify-this-song') {
+      spotifyIt(thingToGet);
+    };
+
+  });
+}
 // get song data from spotify if command === spotify-this-song
 if (command === 'spotify-this-song') {
   spotifyIt(thingToGet);
-
 }
 // get a movie from OMDB if the command is 'movie-this'
 if (command === 'movie-this') {
