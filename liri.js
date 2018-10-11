@@ -18,32 +18,18 @@ if (command === 'do-what-it-says') {
     command = data[0];
     thingToGet = data[1];
     // choose action based on command in file
-    if (command === 'spotify-this-song') {
-      spotifyIt(thingToGet);
+    if (command === 'spotify-this-song' || command === 'movie-this') {
+      executeCommand(command, thingToGet);
     };
-    if (command === 'movie-this') {
-      moveIt(thingToGet);
-    }
+
     if (command === 'concert-this') {
       let thingToGetFix = thingToGet.slice(1, -1);
-      concertIt(thingToGetFix);
+      cexecuteCommand(command, thingToGetFix);
     }
-
   });
 }
-// get song data from spotify if command === spotify-this-song
-if (command === 'spotify-this-song') {
-  spotifyIt(thingToGet);
-}
-// get a movie from OMDB if the command is 'movie-this'
-if (command === 'movie-this') {
-  moveIt(thingToGet);
-}
 
-// get a list of events from bands in town if the command is 'concert-this'
-if (command === 'concert-this') {
-  concertIt(thingToGet);
-}
+executeCommand(command, thingToGet);
 
 // function to run spotify package and print out information
 function spotifyIt(song) {
@@ -124,6 +110,21 @@ function concertIt(artist) {
       }
     }
   });
+}
+
+function executeCommand(cmd, subject) {
+  // get song data from spotify if command === spotify-this-song
+  if (cmd === 'spotify-this-song') {
+    spotifyIt(subject);
+  }
+  // get a movie from OMDB if the command is 'movie-this'
+  if (cmd === 'movie-this') {
+    moveIt(subject);
+  }
+  // get a list of events from bands in town if the command is 'concert-this'
+  if (cmd === 'concert-this') {
+    concertIt(subject);
+  }
 }
 
 // converts the incomming date string to the requested format
