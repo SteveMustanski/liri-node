@@ -18,7 +18,7 @@ To set up the app, in addition to cloning the repo, you will need to set up a .e
 
 The .env file will look like:
 
-```javascript
+```
 # Spotify API keys
 
 SPOTIFY_ID="your spotify id"
@@ -31,6 +31,7 @@ OMDB_SECRET="your omdb key"
 # Bands in town keys
 
 BANDS_ID="your bands id"
+
 ```
 
 ## Running the app
