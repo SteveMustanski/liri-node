@@ -36,10 +36,10 @@ BANDS_ID="your bands id"
 ## Running the app
 The user can enter the following commands:
 
-`node liri.js 'concert-this' 'name of a band'`
-`node liri.js 'spotify-this-song' 'name of song'`
-`node liri.js 'movie-this' 'name of movie'`
-`node liri.js 'do-what-it-says'`
+* `node liri.js 'concert-this' 'name of a band'`
+* `node liri.js 'spotify-this-song' 'name of song'`
+* `node liri.js 'movie-this' 'name of movie'`
+* `node liri.js 'do-what-it-says'`
 
 'do-what-it-says' will read the random.txt file and execute the command found there.
 
