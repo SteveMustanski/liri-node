@@ -17,9 +17,13 @@ if (command === 'do-what-it-says') {
     data = data.split(',');
     command = data[0];
     thingToGet = data[1];
+    // choose action based on command in file
     if (command === 'spotify-this-song') {
       spotifyIt(thingToGet);
     };
+    if (command === 'movie-this') {
+      moveIt(thingToGet);
+    }
 
   });
 }
@@ -29,29 +33,7 @@ if (command === 'spotify-this-song') {
 }
 // get a movie from OMDB if the command is 'movie-this'
 if (command === 'movie-this') {
-  // default to 'Mr. Nobody' if no movie is specified
-  if (!thingToGet) {
-    thingToGet = 'Mr. Nobody';
-    console.log(thingToGet);
-  }
-  let url = `http://www.omdbapi.com/?apikey=${keys.omdb.secret}&t=${thingToGet}`;
-  request(url, function (error, response, body) {
-
-    // If the request was successful...
-    if (!error && response.statusCode === 200) {
-
-      // Then log the body from the site!
-      let movie = JSON.parse(body);
-      console.log(`Title: ${movie.Title}`);
-      console.log(`Year: ${movie.Year}`);
-      console.log(`IMDB Rating: ${movie.imdbRating}`);
-      console.log(`Rotten Tomatoes: ${movie.Ratings[1].Value}`);
-      console.log(`Country: ${movie.Country}`);
-      console.log(`Language: ${movie.Language}`);
-      console.log(`Plot: ${movie.Plot}`);
-      console.log(`Actors: ${movie.Actors}`);
-    }
-  });
+  moveIt(thingToGet);
 }
 
 // get a list of events from bands in town if the command is 'concert-this'
@@ -116,6 +98,32 @@ function  spotifyIt(song) {
       } else {
         console.log(`Track: '${song}' not found`)
   
+      }
+    });
+}
+
+function moveIt(title) {
+    // default to 'Mr. Nobody' if no movie is specified
+    if (!title) {
+      title = 'Mr. Nobody';
+      console.log(thingToGet);
+    }
+    let url = `http://www.omdbapi.com/?apikey=${keys.omdb.secret}&t=${title}`;
+    request(url, function (error, response, body) {
+  
+      // If the request was successful...
+      if (!error && response.statusCode === 200) {
+  
+        // Then log the body from the site!
+        let movie = JSON.parse(body);
+        console.log(`Title: ${movie.Title}`);
+        console.log(`Year: ${movie.Year}`);
+        console.log(`IMDB Rating: ${movie.imdbRating}`);
+        console.log(`Rotten Tomatoes: ${movie.Ratings[1].Value}`);
+        console.log(`Country: ${movie.Country}`);
+        console.log(`Language: ${movie.Language}`);
+        console.log(`Plot: ${movie.Plot}`);
+        console.log(`Actors: ${movie.Actors}`);
       }
     });
 }
