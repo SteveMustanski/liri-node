@@ -8,5 +8,5 @@ exports.omdb = {
 };
 
 exports.bands = {
-  secret: process.env.BANDS_ID
+  id: process.env.BANDS_ID
 };
